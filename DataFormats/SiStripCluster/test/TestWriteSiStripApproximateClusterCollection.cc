@@ -32,6 +32,7 @@
 #include <utility>
 #include <vector>
 
+
 namespace edmtest {
 
   class TestWriteSiStripApproximateClusterCollection : public edm::global::EDProducer<> {
@@ -80,7 +81,7 @@ namespace edmtest {
       unsigned int numberOfClustersPerDetId = (iEvent.id().event() - 1) % 10;
       for (unsigned int j = 0; j < numberOfClustersPerDetId; ++j) {
         unsigned int iOffset = j + iEvent.id().event();
-        cms_uint16_t barycenter = integralValues_[1] + iOffset;
+        cms_uint16_t barycenter = (integralValues_[1] + iOffset) * 65535.0 / 770.0;
         cms_uint8_t width = integralValues_[2] + iOffset;
         cms_uint8_t avgCharge = integralValues_[3] + iOffset;
         bool filter = j < (integralValues_[4] + iEvent.id().event()) % 10;
